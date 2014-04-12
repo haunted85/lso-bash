@@ -13,7 +13,7 @@ else
 		echo "Linee trovate: $lines"
 	
 		if [ $lines -gt "0" ]; then
-			echo "Creo il file Discendenza-$1"
+			echo "Creo il file Discendenza-$1..."
 			`ps --ppid $1 | cut -d' ' -f $field_no | grep "^$1$" > Discendenza-$1`
 		fi
 		shift
