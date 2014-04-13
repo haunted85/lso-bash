@@ -22,26 +22,22 @@ else
 		# Se la directory è stata correttamente creata
 		if [ "$?" -eq "0" ]; then
 			
-			# Per ogni file che viene listato nel path specificato
+			# Per ogni file regolare che viene listato nel path specificato e sottodirectory
 			for file in `find $path_name -type f` 
 			do
-				
-				# se il file corrente è regolare
-				if [ -f $file ]; then
-					total_matches=0
-					# controlla se contiene una delle parole specificate in input
-					for param in "$@"
-					do
-						current_match=0
-						current_match=`grep $param $file | wc -l`
-						total_matches=$(($total_matches+$current_match))
-					done
-					#copia nel path
-					if [ $total_matches -gt "0" ]; then
-						echo "Copying $file in $dir_name..."
-						cp $file $dir_name
-					fi
-				fi
+				total_matches=0
+				# controlla se contiene una delle parole specificate in input
+				for param in "$@"
+				do
+					current_match=0
+					current_match=`grep $param $file | wc -l`
+					total_matches=$(($total_matches+$current_match))
+				done
+				#copia nel path
+				if [ $total_matches -gt "0" ]; then
+					echo "Copying $file in $dir_name..."
+					cp $file $dir_name
+				fi	
 			done	
 
 		else
