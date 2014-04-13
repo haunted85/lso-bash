@@ -11,7 +11,7 @@ else
 		# avanzo
 		shift
 
-		#Salvo il nome della nuova directory
+		# Salvo il nome della nuova directory
 		dir_name=$1
 		# avanzo
 		shift
@@ -19,13 +19,28 @@ else
 		# Creo la nuova directory
 		mkdir $dir_name
 
-		#Se la directory è stata correttamente creata
+		# Se la directory è stata correttamente creata
 		if [ "$?" -eq "0" ]; then
-			echo "$dir_name created."
-
-			for file in `ls -R` do
-				if [ -f $file ]; then 
-					
+			
+			# Per ogni file che viene listato nel path specificato
+			for file in `find $path_name -type f` 
+			do
+				
+				# se il file corrente è regolare
+				if [ -f $file ]; then
+					total_matches=0
+					# controlla se contiene una delle parole specificate in input
+					for param in "$@"
+					do
+						current_match=0
+						current_match=`grep $param $file | wc -l`
+						total_matches=$(($total_matches+$current_match))
+					done
+					#copia nel path
+					if [ $total_matches -gt "0" ]; then
+						echo "Copying $file in $dir_name..."
+						cp $file $dir_name
+					fi
 				fi
 			done	
 
