@@ -1,9 +1,14 @@
 #!/bin/sh
 
+# Si realizzi uno script di shell processi.sh che accetti come parametri una lista di PID e
+# controlli se esistono processi in esecuzione per quel PID. Per ogni PID verrà creato un file
+# Discendenza-<PID> nella directory corrente contenente tutti i PID dei processi
+# discendenti.
+
 # Controllo che vi sia almeno un PID in input
 if [ "$#" -lt "1" ]; then
 	# se non c'è, torno un errore sullo std err ed esco dallo script
-	echo 'Error: cannot perform any task with no input.' 2>&1
+	echo 'Errore: non è stat imm.' 2>&1
 	echo 'Usage: ./processes.sh pid1, [pid2, ..., pidN]'
 else
 	# finché ci sono argomenti in input da processare
