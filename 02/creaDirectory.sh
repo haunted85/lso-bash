@@ -1,5 +1,11 @@
 #! /bin/sh
 
+# Si realizzi uno script di shell creaDirectory.sh che accetta come parametro un
+# pathname path ed un nome di directory dir e una lista di parole P1, ..., PN e controlla se
+# path1 esiste, in caso positivo crea la directory dir nella directory corrente ed in essa copia
+# tutti i file regolari contenuti in path e in tutte le sue sottodirectory in cui compare almeno
+# una parola P1, ..., PN.
+
 if [ "$#" -lt "3" ]; then
 	echo "Error: cannot perform any task without enough input." 2>&1
 	echo "Usage: ./creaDirectory <path_name> <dir_name> <word>[, <word2>, ..., <wordN>]"
